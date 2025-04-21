@@ -1,0 +1,39 @@
+body {
+    background-color: #b7b7b7;
+}
+
+.title, body > h1, body > div, .navigation {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navigation > ul li {
+    text-align: center;
+
+    flex: 1;
+    background-image:  linear-gradient(to top, rgba(255,0,0,0), rgb(241, 241, 221));
+    line-height: 40px;
+}
+
+.navigation > ul li a {
+    color: #F5F5F7;
+
+    text-decoration: none;
+    font-family: Helvetica, sans-serif;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.navigation > ul li:hover {
+    background-image:  linear-gradient(to top, rgba(255,0,0,0), rgb(241, 241, 221));
+}
+footer span {
+    display: table;
+    margin: 0 auto;
+}
+
+article {
+    padding-left: 8%;
+    padding-right: 8%;
+}
