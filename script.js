@@ -23,7 +23,6 @@ document.getElementById("usernameForm").addEventListener("submit", function(even
     event.preventDefault();
     let username = document.getElementById("username").value;
     setCookie("username", username, 1);
-    location.reload();
 });
 
 let storedUsername = getCookie("username");
