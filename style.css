@@ -74,6 +74,7 @@ body article h1, body > h1 {
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid #ccc;
     border-radius: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .section {
