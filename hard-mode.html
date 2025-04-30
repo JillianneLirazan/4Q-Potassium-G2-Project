@@ -55,10 +55,11 @@
             }
 
             function startGame() {
-                if (wordsCorrect >= 10) {
-                    document.getElementById("message").textContent = "You've successfully unscrambled 10 words! You win! ";
-                    disableInput();
-                    return;
+                i if (wordsCorrect >= 10) {
+                        document.getElementById("message").textContent = "Congratulations! You've unscrambled all 10 words! Final score: " + score;
+                        disableInput();
+                        return;
+                    }
                 }
                 if (lives <= 0) {
                     document.getElementById("message").textContent = "You ran out of lives. Game over!";
