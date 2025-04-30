@@ -69,7 +69,8 @@ document.addEventListener("DOMContentLoaded", function() {
             if (isFirstTime) {
                 greetingElement.innerText = "Welcome, " + username + "!";
                 isFirstTime = false;
-            } else {
+            } 
+            {
                 greetingElement.innerText = "Welcome back, " + username + "!";
             }
             
