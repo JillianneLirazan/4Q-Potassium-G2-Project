@@ -109,7 +109,7 @@
                 
                 updateStatus();
                 
-                if (wordsCorrect < 10 && lives > 0) {
+                if (wordsCorrect <= 10 && lives > 0) {
                     setTimeout(startGame, 1000);
                 }
             }
