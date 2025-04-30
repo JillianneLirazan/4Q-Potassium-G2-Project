@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Group 2 Potassium">
+        <meta name="keywords" content="HTML, CSS, Javascript"> <!-- Changed "keyboard" to "keywords" -->
+        <meta name="revised" content="29-04-2025">
+        <title>CS3-2Q-G3-Proj</title>
+        <link rel="icon" type="image/png" href="images/Monkeylogo.png"> 
+        <link rel="stylesheet" type="text/css" href="rules-mecha.css">
+        <link rel="stylesheet" type="text/css" href="hard-mode.css">
+    
+    </head>
+    <body>
+        <section class="container">
+        <h1>Jumble Jungle</h1>
+        <p>Unscramble the letters to guess the word!</p>
+        <div id="jumble">Loading...</div>
+        <input type="text" id="guessInput" placeholder="Type your guess here">
+        <button onclick="checkGuess()">Submit</button>
+        <button onclick="getHint()">Hint</button>
+        <button onclick="restartGame()">Restart</button>
+        <p id="message"></p>
+        <p id="scoreDisplay"></p>
+        <p id="livesDisplay"></p>
+        </section>
+
+        <script>
+            const words = [
+                { word: "commitment", hint: "Di magawa ni Zach dati" }, // Made lowercase for consistent comparison
+                { word: "backburner", hint: "Song ni Niki" },
+                { word: "crocodiles", hint: "Leaders of the Philippine Government" },
+                { word: "cappuccino", hint: "Close relative of ballerina Cappuccina" }, // Fixed typo in "relative"
+                { word: "mozzarella", hint: "Long, white, and tasty" },
+                { word: "corruption", hint: "Pro skill ni Marcos" },
+                { word: "sanitation", hint: "Hygiene. Need ni Flint and Hans" },
+                { word: "friendship", hint: "Ilao family, boogans, smith familya" },
+                { word: "mysterious", hint: "Si John Paul" },
+                { word: "attraction", hint: "What you feel pag nandyan crush mo" },
+            ];
+
+            let currentWord = "";
+            let currentHint = "";
+            let jumbled = "";
+            let score = 0;
+            let lives = 5; // Added missing variable
+            let wordsCorrect = 0; // Added missing variable
+
+            function shuffleWord(word) { // Added parameter 'word'
+                const arr = word.split("");
+                for (let i = arr.length - 1; i > 0; i--){ // Fixed typo in "length"
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [arr[i], arr[j]] = [arr[j], arr[i]]; 
+                }
+                return arr.join("");
+            }
+
+            function startGame() {
+                if (wordsCorrect >= 10) {
+                    document.getElementById("message").textContent = "You've successfully unscrambled 10 words! You win! ";
+                    disableInput();
+                    return;
+                }
+                if (lives <= 0) {
+                    document.getElementById("message").textContent = "You ran out of lives. Game over!";
+                    disableInput();
+                    return;
+                }
+
+                const randomIndex = Math.floor(Math.random() * words.length); // Changed 'word' to 'words'
+                currentWord = words[randomIndex].word;
+                currentHint = words[randomIndex].hint;
+                jumbled = shuffleWord(currentWord); // Fixed typo in 'currentWord'
+                while(jumbled === currentWord) {
+                    jumbled = shuffleWord(currentWord); // ensure it's actually jumbled
+                }
+
+                document.getElementById("jumble").textContent = jumbled;
+                document.getElementById("message").textContent = "";
+                document.getElementById("scoreDisplay").textContent = `Score: ${score}`;
+                document.getElementById("guessInput").value = "";
+                updateStatus();
+            }
+
+            function checkGuess() {
+                const guess = document.getElementById("guessInput").value.toLowerCase();
+
+                if (guess === "hint") {
+                    getHint();
+                    return;
+                }
+                if (guess === currentWord.toLowerCase()) { // Made comparison consistent with lowercase
+                    wordsCorrect++;
+                    score += 10; // Added score increment
+                    document.getElementById("message").textContent = "That's correct! You guessed it!";
+                } else {
+                    lives--;
+                    document.getElementById("message").textContent = "Nope! Try again."; // Fixed typo in "again"
+                }
+                document.getElementById("scoreDisplay").textContent = `Score: ${score}`;
+                updateStatus();
+                setTimeout(startGame, 1000);
+            }
+
+            function getHint() {
+                document.getElementById("message").textContent = `Hint: ${currentHint}`;
+                score = Math.max(0, score - 5); // Deduct points for using hint
+                updateStatus();
+            }
+
+            function restartGame() {
+                lives = 5;
+                wordsCorrect = 0;
+                score = 0;
+                enableInput();
+                startGame();
+            }
+
+            function updateStatus() {
+                document.getElementById("livesDisplay").textContent = `Lives: ${lives}`;
+                document.getElementById("scoreDisplay").textContent = `Score: ${wordsCorrect}/10`;
+            }
+
+            function disableInput() { // Fixed duplicate function name
+                document.getElementById("guessInput").disabled = true;
+            }
+
+            function enableInput() {
+                document.getElementById("guessInput").disabled = false;
+            }
+
+            //start game on page load
+            window.onload = startGame;
+        </script>
+    </body>
+</html>
+ 

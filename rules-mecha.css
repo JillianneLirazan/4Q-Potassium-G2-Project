@@ -1,0 +1,71 @@
+body {
+    background-image: url("images/junglebackground.png");
+}
+
+.title, body > h1, body > div, .navigation {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.navigation > ul li {
+    text-align: center;
+
+    flex: 1;
+    background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(241, 241, 221));
+    line-height: 40px;
+}
+
+.navigation > ul li a {
+    color: #F5F5F7;
+
+    text-decoration: none;
+    font-family: Helvetica, sans-serif;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.navigation > ul li:hover {
+    background-image: linear-gradient(to left, rgba(255,153,153,0) 15%, rgba(237, 255, 159, 0.095) 50%,rgba(255,153,153,0) 85%);
+}
+footer span {
+    display: table;
+    margin: 0 auto;
+}
+.containerRulesMech {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 50px;
+}
+article {
+    padding-left: 1%;
+    padding-right: 6%;
+    text-align: center;
+}
+
+article header h1 {
+    text-align: left;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 0;
+}
+
+article section {
+    color: #7b4606;
+    font-family:Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: left;
+    padding-bottom: 2em;
+}
+
+article section p {
+    text-align: left;
+    font-size: 1.3em;
+}
