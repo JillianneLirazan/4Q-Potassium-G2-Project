@@ -9,20 +9,19 @@
         <link rel="icon" type="image/png" href="images/Monkeylogo.png"> 
         <link rel="stylesheet" type="text/css" href="rules-mecha.css">
         <link rel="stylesheet" type="text/css" href="hard-mode.css">
-    
     </head>
     <body>
         <section class="container">
-        <h1>Jumble Jungle</h1>
-        <p>Unscramble the letters to guess the word!</p>
-        <div id="jumble">Loading...</div>
-        <input type="text" id="guessInput" placeholder="Type your guess here">
-        <button onclick="checkGuess()">Submit</button>
-        <button onclick="getHint()">Hint</button>
-        <button onclick="restartGame()">Restart</button>
-        <p id="message"></p>
-        <p id="scoreDisplay"></p>
-        <p id="livesDisplay"></p>
+            <h1>Jumble Jungle</h1>
+            <p>Unscramble the letters to guess the word!</p>
+            <div id="jumble">Loading...</div>
+            <input type="text" id="guessInput" placeholder="Type your guess here">
+            <button onclick="checkGuess()">Submit</button>
+            <button onclick="getHint()">Hint</button>
+            <button onclick="restartGame()">Restart</button>
+            <p id="message"></p>
+            <p id="scoreDisplay"></p>
+            <p id="livesDisplay"></p>
         </section>
 
         <script>
@@ -70,18 +69,14 @@
                 const randomIndex = Math.floor(Math.random() * words.length); 
                 currentWord = words[randomIndex].word;
                 currentHint = words[randomIndex].hint;
-                jumbled = shuffleWord(currentWord); 
-                    jumbled = shuffleWord(currentWord); 
-                }
-                 
+                jumbled = shuffleWord(currentWord);
+                
                 document.getElementById("jumble").textContent = jumbled;
                 document.getElementById("message").textContent = "";
                 document.getElementById("scoreDisplay").textContent = `Score: ${score}`;
+                document.getElementById("livesDisplay").textContent = `Lives: ${lives}`;
                 document.getElementById("guessInput").value = "";
-            
-            
-                updateStatus();
-            
+            }
 
             function checkGuess() {
                 const guess = document.getElementById("guessInput").value.toLowerCase();
@@ -90,6 +85,7 @@
                     getHint();
                     return;
                 }
+                
                 if (guess === currentWord.toLowerCase()) { 
                     wordsCorrect++;
                     score += 10; 
@@ -100,12 +96,17 @@
                         disableInput();
                         return;
                     }
-                    
                 } else {
                     lives--;
                     document.getElementById("message").textContent = "Nope! Try again."; 
+                    
+                    if (lives <= 0) {
+                        document.getElementById("message").textContent = "Game over! The word was: " + currentWord;
+                        disableInput();
+                        return;
+                    }
                 }
-                document.getElementById("scoreDisplay").textContent = `Score: ${score}`;
+                
                 updateStatus();
                 setTimeout(startGame, 1000);
             }
@@ -126,11 +127,8 @@
 
             function updateStatus() {
                 document.getElementById("livesDisplay").textContent = `Lives: ${lives}`;
-                document.getElementById("scoreDisplay").textContent = `Correct words: ${wordsCorrect}/10`;
+                document.getElementById("scoreDisplay").textContent = `Score: ${score} | Correct words: ${wordsCorrect}/10`;
             }
-            if (wordsCorrect <= 10 && lives > 0) {
-                    setTimeout(startGame, 1000);
-                }
 
             function disableInput() { 
                 document.getElementById("guessInput").disabled = true;
@@ -140,7 +138,7 @@
                 document.getElementById("guessInput").disabled = false;
             }
 
-            //start game on page load
+            // Start game on page load
             window.onload = startGame;
         </script>
     </body>
