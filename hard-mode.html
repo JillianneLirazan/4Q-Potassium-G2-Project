@@ -128,7 +128,7 @@
                 document.getElementById("livesDisplay").textContent = `Lives: ${lives}`;
                 document.getElementById("scoreDisplay").textContent = `Correct words: ${wordsCorrect}/10`;
             }
-            if (wordsCorrect >= 10 && lives > 0) {
+            if (wordsCorrect <= 10 && lives > 0) {
                     setTimeout(startGame, 1000);
                 }
 
@@ -145,4 +145,3 @@
         </script>
     </body>
 </html>
- 
