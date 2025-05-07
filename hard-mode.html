@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Group 2 Potassium">
+        <meta name="keywords" content="HTML, CSS, Javascript"> 
+        <meta name="revised" content="06-05-2025">
+        <title>CS3-2Q-G3-Proj</title>
+        <link rel="icon" type="image/png" href="images/Monkeylogo.png"> 
+        <link rel="stylesheet" type="text/css" href="easy-mode.css">
+        
+    </head>
+    <body>
+        <header class="title">
+            <img src="images/Monkeylogo.png" alt="Sigma Logo" height="70px" width="70px">
+            <h1>Jumble Jungle</h1>
+        </header>
+        <header class="navigation">
+            <ul>
+                <li id="radius-right"><a href="index.html">Home</a></li>
+            </ul>
+        </header>
+        <div class="score">
+            <p>HIGH SCORE:</p>
+            <span id="highscore"></span>
+        </div>
+
+        <section class="container">
+        <h1>Jumble Jungle</h1>
+        <p>Unscramble the letters to guess the word!</p>
+        <div id="jumble">Loading...</div>
+        <input type="text" id="guessInput" placeholder="Type your guess here">
+        <button onclick="checkGuess()">Submit</button>
+        <button onclick="getHint()">Hint</button>
+        <button onclick="restartGame()">Restart</button>
+        <p id="message"></p>
+        <p id="scoreDisplay"></p>
+        <p id="livesDisplay"></p>
+        </section>
+
+        <script src="hard-mode.js"></script>
+
+</html>
